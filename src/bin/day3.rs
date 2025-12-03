@@ -22,18 +22,11 @@ fn part1(lines: &Vec<String>) {
 
 fn shift_in(arr: &[u32; 12], next: u32) -> [u32; 12] {
     let full_arr =  arr.iter().chain(iter::once(&next));
-    let first_out_of_order_value = full_arr.tuple_windows().position(|(w1, w2)| w1 < w2);
-    match first_out_of_order_value {
-        None => arr.clone(),
-        Some(first_out_of_order_value) => {
-            arr.iter()
-                .chain(iter::once(&next))
-                .enumerate()
-                .filter_map(|(i, &x)| { if i != first_out_of_order_value { Some(x) } else { None } })
-                .collect_array()
-                .expect("Couldn't collect array")
-        }
-    }
+    let first_out_of_order_value = full_arr.clone().tuple_windows().position(|(w1, w2)| w1 < w2).unwrap_or(12);
+    full_arr.enumerate()
+        .filter_map(|(i, &x)| { if i != first_out_of_order_value { Some(x) } else { None } })
+        .collect_array()
+        .expect("Couldn't collect array")
 }
 
 fn part2(lines: &Vec<String>) {
