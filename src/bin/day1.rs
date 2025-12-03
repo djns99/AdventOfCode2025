@@ -28,7 +28,6 @@ fn part2(input: &Vec<String>) {
 
         // If we have extra shift that will get us an extra zero, add it
         if extra_shift != 0 && curr.1 != 0 && (new_pos <= 0 || new_pos >= 100) {
-            new_pos = new_pos.rem_euclid(100);
             shift_revolutions += 1;
         }
         new_pos = new_pos.rem_euclid(100);
