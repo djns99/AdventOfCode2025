@@ -35,7 +35,7 @@ fn part2(lines: &Vec<String>) {
     let start_index = lines[0].find('S').unwrap();
     let mut replace_positions = Vec::new();
     let mut state = HashMap::from([(start_index, 1usize)]);
-    let result = lines[1..].iter().fold(&mut state, |state, line| {
+    let result: usize = lines[1..].iter().fold(&mut state, |state, line| {
         replace_positions.clear();
         for (&pos, &mut count) in state.into_iter() {
             if line.as_bytes()[pos] == b'^' {
@@ -50,7 +50,7 @@ fn part2(lines: &Vec<String>) {
         }
 
         state
-    }).into_iter().fold(0, |acc, (_, count)| acc + *count);
+    }).values().sum();
 
     println!("Num splits: {}", result);
 }
