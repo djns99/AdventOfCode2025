@@ -1,7 +1,7 @@
 use std::io;
 
 fn check_reversible(value: u64) -> bool {
-    let allowed_chunks = [2, 3, 5, 7, 11]; // Part 1
+    let allowed_chunks = [2, 3, 5, 7, 11]; // Part 2 // [2] // Part 1
     let digits = (value * 10).ilog10();
     'chunk: for chunks in allowed_chunks {
         if digits % chunks != 0 || chunks > digits {
